@@ -39,7 +39,7 @@
 
             <div class="step">
                 <div class="number">
-                    <span>
+                    <span :class="$route.name === 'summary' || $route.name === 'gratitude' ? 'selected' : ''">
                         4
                     </span>
                 </div>
@@ -54,6 +54,7 @@
 
 <script>
 export default {
+    name: 'Sidebar',
     data () {
         return {
             labels: {

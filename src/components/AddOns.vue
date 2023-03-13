@@ -6,53 +6,19 @@
         </div>
 
         <div class="add-ons-content">
-            <div class="first-add-ons">
+            <div class="content-item" v-for="(item, idx) in dataArray" :key="idx">
                 <div class="left-side-content">
                     <div class="checkbox-item">
                         <input type="checkbox">
                     </div>
                     <div class="description">
-                        <p class="title">{{ labels.online_service }}</p>
-                        <p class="notification">{{ labels.access_to_multiplayer_games }}</p>
+                        <p class="title">{{ item.title }}</p>
+                        <p class="notification">{{ item.text }}</p>
                     </div>
                 </div>
                 <div class="right-side-content">
                     <div class="payment">
-                        <p>+$1/{{ labels.mo }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="second-add-ons">
-                <div class="left-side-content">
-                    <div class="checkbox-item">
-                        <input type="checkbox">
-                    </div>
-                    <div class="description">
-                        <p class="title">{{ labels.larger_storage }}</p>
-                        <p class="notification">{{ labels.cloud_save }}</p>
-                    </div>
-                </div>
-                <div class="right-side-content">
-                    <div class="payment">
-                        <p>+$1/{{ labels.mo }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="third-add-ons">
-                <div class="left-side-content">
-                    <div class="checkbox-item">
-                        <input type="checkbox">
-                    </div>
-                    <div class="description">
-                        <p class="title">{{ labels.customizable_profile }}</p>
-                        <p class="notification">{{ labels.custom_theme_on_your_profile }}</p>
-                    </div>
-                </div>
-                <div class="right-side-content">
-                    <div class="payment">
-                        <p>+$1/{{ labels.mo }}</p>
+                        <p>+${{ item.payment }}/{{ labels.mo }}</p>
                     </div>
                 </div>
             </div>
@@ -70,7 +36,7 @@
             </div>
 
             <div class="next">
-                <router-link to="pick-add-ons">
+                <router-link to="summary">
                     <button>
                         <span>
                             {{ labels.next_step }}
@@ -83,8 +49,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
-    name: 'Greeting',
+    name: 'Addons',
     data () {
         return {
             labels: {
@@ -94,7 +61,15 @@ export default {
                 next_step: 'Next Step',
                 mo: 'mo',
                 yr: 'yr'
-            }
+            },
+        }
+    },
+    computed: {
+        ...mapState('form', ['addOnsData']),
+
+        dataArray() {
+            let data = []
+            return data = this.addOnsData
         }
     }
 }
@@ -123,14 +98,8 @@ export default {
     }
 
     .add-ons-content {
-        .first-add-ons,
-        .second-add-ons {
+        .content-item{
             margin-bottom: 16px;
-        }
-
-        .first-add-ons,
-        .second-add-ons,
-        .third-add-ons {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -200,7 +169,6 @@ export default {
                     }
                 }
             }
-
         }
     }
 

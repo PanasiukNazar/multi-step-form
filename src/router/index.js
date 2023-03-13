@@ -27,6 +27,20 @@ const routes = [
     name: 'pick-add-ons',
     component: () => import('@/components/AddOns.vue'),
   },
+
+  {
+    path: '/summary',
+    name: 'summary',
+    component: () => import('@/components/Summary.vue'),
+
+    children: [
+        {
+            path: '/summary/gratitude',
+            name: 'gratitude',
+            component: () => import('@/components/Gratitude.vue'),
+        }
+    ]
+  },
 ]
 
 const router = new VueRouter({

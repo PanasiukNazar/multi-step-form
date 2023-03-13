@@ -20,5 +20,19 @@ export default {
         },
     ],
 
-    title: 'Hello'
+    selectedPlan: {
+        type: 'Arcade',
+        time: 'Monthly',
+        payment: 9,
+        services: [
+            {
+                serviceType: 'Online service',
+                payment: 1
+            },
+            {
+                serviceType: 'Larger storage',
+                payment: 2
+            },
+        ]
+    }
 }

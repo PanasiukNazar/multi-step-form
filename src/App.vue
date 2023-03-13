@@ -15,7 +15,8 @@
 
 <script>
 import SideBar from './components/SideBar.vue';
-    export default {
+
+export default {
     name: "App",
     components: { SideBar }
 }       
@@ -57,4 +58,5 @@ import SideBar from './components/SideBar.vue';
         src: local("Ubuntu-Regular"),
         url('@/assets/fonts/Ubuntu-Regular.ttf') format("truetype");
     }
+
 </style>
