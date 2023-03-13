@@ -4,13 +4,13 @@
             <h4 class="headline">{{ labels.personal_info }}</h4>
             <span class="notification">{{ labels.provide_your_name }}</span>
         </div>
-
         <div class="content-block">
             <div class="name-input">
                 <FormulateInput
                     type="text"
                     :label="labels.name"
                     placeholder="e.g. Stephen King"
+                    v-model="userValues.userName"
                 />
             </div>
             <div class="email-input">
@@ -20,6 +20,7 @@
                     name="email"
                     validation="required|email"
                     placeholder="e.g. stephenking@lorem.com"
+                    v-model="userValues.userEmail"
                 />
             </div>
             <div class="phone-input">
@@ -28,11 +29,12 @@
                     :label="labels.phone"
                     validation="required|number"
                     placeholder="e.g. +1 234 567 890"
+                    v-model="userValues.userPhone"
                 />
             </div>
             <div class="button-input">
                 <router-link to="select-plan"> 
-                    <button>
+                    <button @click="setUserData">
                         <span>{{ labels.next_step }}</span>
                     </button>
                 </router-link>
@@ -42,9 +44,11 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
   name: 'PersonalInfo',
-  data () {
+  data() {
         return {
             labels: {
                 personal_info: 'Personal info',
@@ -53,7 +57,16 @@ export default {
                 email: 'Email Address',
                 phone: 'Phone Number',
                 next_step: 'Next Step'
-            }
+            },
+            userValues: { ...this.$store.state.form.userData }
+        }
+    },
+
+    methods: {
+        ...mapMutations('form', ['userDataFiling']),
+
+        setUserData() {
+            this.userDataFiling(this.userValues)
         }
     }
 }

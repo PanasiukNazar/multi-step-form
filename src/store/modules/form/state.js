@@ -20,6 +20,8 @@ export default {
         },
     ],
 
+    userData: JSON.parse(sessionStorage.getItem('userData')),
+
     selectedPlan: {
         type: 'Arcade',
         time: 'Monthly',
