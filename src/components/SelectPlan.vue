@@ -6,26 +6,26 @@
         </div>
 
         <div class="plan-block">
-            <div class="plan-type" v-for="(item, idx) in planType" :key="idx">
+            <div class="plan-type" v-for="(item, idx) in planType" :class="item.isSelected ? 'selectedPlan' : ''" @click="toggleSelectedPlan(idx)" :key="idx">
                 <div class="plan-icon">
                     <img :src="require('@/assets/images/icon-' + item.type + '.svg')" :alt="item.type">
                 </div>
 
                 <div class="plan-content">
                     <p class="title">{{ item.title }}</p>
-                    <p class="price">$90/{{ labels.mo }}</p>
-                    <span class="discount">{{ labels.two_month_free }}</span>
+                    <p class="price">${{ item.price }}/{{ labels.mo }}</p>
+                    <span class="discount" v-if="!monthlySubscription">{{ labels.two_month_free }}</span>
                 </div>
             </div>
         </div>
 
         <div class="subscription-time">
-            <span class="month-subscription active">{{ labels.monthly }}</span>
+            <span class="month-subscription" :class="monthlySubscription ? 'active' : ''">{{ labels.monthly }}</span>
             <div class="month-year-switcher">
-                <p class="month selected"></p>
-                <p class="year"></p>
+                <p class="month" :class="monthlySubscription ? 'selected' : ''" @click="toggleSubscriptionTime()"></p>
+                <p class="year" :class="!monthlySubscription ? 'selected' : ''" @click="toggleSubscriptionTime()"></p>
             </div>
-            <span class="year-subscription">{{ labels.yearly }}</span>
+            <span class="year-subscription" :class="!monthlySubscription ? 'active' : ''">{{ labels.yearly }}</span>
         </div>
 
         <div class="button-block">
@@ -43,7 +43,7 @@
                 <router-link to="pick-add-ons">
                     <button>
                         <span>
-                            {{ labels.next_step }}
+                            {{ labels.next_step }} 
                         </span>
                     </button>
                 </router-link>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
 export default {
   name: 'SelectPlan',
   data () {
@@ -71,24 +72,11 @@ export default {
         }
     },
   computed: {
-    planType () {
-        return [
-            {
-                type: 'arcade',
-                title: 'Arcade'
-            },
+    ...mapState('form', ['monthlySubscription', 'planType']),
+  },
 
-            {
-                type: 'advanced',
-                title: 'Arcade'
-            },
-
-            {
-                type: 'pro',
-                title: 'Pro'
-            }
-        ]
-    }
+  methods: {
+    ...mapMutations('form', ['toggleSelectedPlan', 'toggleSubscriptionTime'])
   }
 }
 </script>
@@ -159,7 +147,11 @@ export default {
 
         .plan-type:hover {
             border: 1px solid #483EFF;
-        } 
+        }
+        
+        .selectedPlan {
+            border: 1px solid #483EFF;
+        }
     }
 
     .subscription-time {

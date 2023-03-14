@@ -22,6 +22,31 @@ export default {
 
     userData: JSON.parse(sessionStorage.getItem('userData')),
 
+    monthlySubscription: true,
+
+    planType: [
+        {
+            type: 'arcade',
+            title: 'Arcade',
+            price: 9,
+            isSelected: true
+        },
+
+        {
+            type: 'advanced',
+            title: 'Advanced',
+            price: 12,
+            isSelected: false
+        },
+
+        {
+            type: 'pro',
+            title: 'Pro',
+            price: 15,
+            isSelected: false
+        }
+    ],
+
     selectedPlan: {
         type: 'Arcade',
         time: 'Monthly',
