@@ -26,7 +26,6 @@ export default {
 <style lang="scss">
     .gratitude-block {
         text-align: center;
-        padding-top: 150px;
 
         .garatitude-image {
             margin-bottom: 32px;

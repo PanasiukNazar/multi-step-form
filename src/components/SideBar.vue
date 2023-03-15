@@ -1,52 +1,50 @@
 <template>
-    <div class="sidebar">
-        <div class="steps-block">
-            <div class="step">
-                <div class="number">
-                    <span :class="$route.name === 'personal-info' ? 'selected' : ''">
-                        1
-                    </span>
-                </div>
-                <div class="description">
-                    <p class="text-step">{{ labels.step_1 }}</p>
-                    <p class="step-description">{{ labels.your_info }}</p>
-                </div>
+    <div class="steps-block">
+        <div class="step">
+            <div class="number">
+                <span :class="$route.name === 'personal-info' ? 'selected' : ''">
+                    1
+                </span>
             </div>
-
-            <div class="step">
-                <div class="number">
-                    <span :class="$route.name === 'select-plan' ? 'selected' : ''">
-                        2
-                    </span>
-                </div>
-                <div class="description">
-                    <p class="text-step">{{ labels.step_2 }}</p>
-                    <p class="step-description">{{ labels.select_plan }}</p>
-                </div>
+            <div class="description">
+                <p class="text-step">{{ labels.step_1 }}</p>
+                <p class="step-description">{{ labels.your_info }}</p>
             </div>
+        </div>
 
-            <div class="step">
-                <div class="number">
-                    <span :class="$route.name === 'pick-add-ons' ? 'selected' : ''">
-                        3
-                    </span>
-                </div>
-                <div class="description">
-                    <p class="text-step">{{ labels.step_3 }}</p>
-                    <p class="step-description">{{ labels.add_ons }}</p>
-                </div>
+        <div class="step">
+            <div class="number">
+                <span :class="$route.name === 'select-plan' ? 'selected' : ''">
+                    2
+                </span>
             </div>
+            <div class="description">
+                <p class="text-step">{{ labels.step_2 }}</p>
+                <p class="step-description">{{ labels.select_plan }}</p>
+            </div>
+        </div>
 
-            <div class="step">
-                <div class="number">
-                    <span :class="$route.name === 'summary' || $route.name === 'gratitude' ? 'selected' : ''">
-                        4
-                    </span>
-                </div>
-                <div class="description">
-                    <p class="text-step">{{ labels.step_4 }}</p>
-                    <p class="step-description">{{ labels.summary }}</p>
-                </div>
+        <div class="step">
+            <div class="number">
+                <span :class="$route.name === 'pick-add-ons' ? 'selected' : ''">
+                    3
+                </span>
+            </div>
+            <div class="description">
+                <p class="text-step">{{ labels.step_3 }}</p>
+                <p class="step-description">{{ labels.add_ons }}</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="number">
+                <span :class="$route.name === 'summary' || $route.name === 'gratitude' ? 'selected' : ''">
+                    4
+                </span>
+            </div>
+            <div class="description">
+                <p class="text-step">{{ labels.step_4 }}</p>
+                <p class="step-description">{{ labels.summary }}</p>
             </div>
         </div>
     </div>
@@ -74,11 +72,11 @@ export default {
 
 <style lang="scss">
 .steps-block {
-    background: #483EFF;
-    border-radius: 10px;
     padding-top: 40px;
-    padding-bottom: 300px;
     padding-left: 42px;
+    height: 100%;
+    background-image: url('@/assets/images/bg-sidebar-desktop.svg');
+    background-size: cover;
 
     .step {
         display: flex;

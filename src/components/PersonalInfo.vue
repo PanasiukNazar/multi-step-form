@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'PersonalInfo',
@@ -74,10 +74,6 @@ export default {
 
 <style lang="scss">
 .personal-info {
-    text-align: left;
-    padding-left: 80px;
-    padding-top: 40px;
-
     .header-block {
         padding-bottom: 35px;
         .headline {
@@ -85,6 +81,8 @@ export default {
             font-size: 32px;
             line-height: 37px;
             color: #022959;
+            margin: 0px;
+            padding-bottom: 11px;
         }
         .notification {
             font-family: 'Ubuntu-Regular';

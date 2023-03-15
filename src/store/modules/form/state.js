@@ -1,29 +1,4 @@
 export default {
-    addOnsData: [
-        {
-            title: 'Online service',
-            text: 'Access to multiplayer games',
-            payment: 1,
-            isSelected: false
-        },
-        {
-            title: 'Larger storage',
-            text: 'Extra 1TB of cloud save',
-            payment: 2,
-            isSelected: false
-        },
-        {
-            title: 'Customizable Profile',
-            text: 'Custom theme on your profile',
-            payment: 2,
-            isSelected: false
-        },
-    ],
-
-    userData: [],
-
-    monthlySubscription: true,
-
     planType: [
         {
             type: 'arcade',
@@ -46,20 +21,33 @@ export default {
             isSelected: false
         }
     ],
+    
+    addOnsData: [
+        {
+            title: 'Online service',
+            text: 'Access to multiplayer games',
+            price: 1,
+            isSelected: false
+        },
+        {
+            title: 'Larger storage',
+            text: 'Extra 1TB of cloud save',
+            price: 2,
+            isSelected: false
+        },
+        {
+            title: 'Customizable Profile',
+            text: 'Custom theme on your profile',
+            price: 2,
+            isSelected: false
+        },
+    ],
 
-    selectedPlan: {
-        type: 'Arcade',
-        time: 'Monthly',
-        payment: 9,
-        services: [
-            {
-                serviceType: 'Online service',
-                payment: 1
-            },
-            {
-                serviceType: 'Larger storage',
-                payment: 2
-            },
-        ]
-    }
+    userData: [],
+
+    monthlySubscription: true,
+
+    summaryData: {},
+
+    totalPrice: null
 }

@@ -13,7 +13,7 @@
 
                 <div class="plan-content">
                     <p class="title">{{ item.title }}</p>
-                    <p class="price">${{ item.price }}/{{ labels.mo }}</p>
+                    <p class="price">{{ labels.usd }}{{ item.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
                     <span class="discount" v-if="!monthlySubscription">{{ labels.two_month_free }}</span>
                 </div>
             </div>
@@ -67,12 +67,13 @@ export default {
                 next_step: 'Next Step',
                 mo: 'mo',
                 yr: 'yr',
-                two_month_free: '2 month free'
+                two_month_free: '2 month free',
+                usd: '$'
             }
         }
     },
   computed: {
-    ...mapState('form', ['monthlySubscription', 'planType']),
+    ...mapState('form', ['monthlySubscription', 'planType', 'monthlySubscription']),
   },
 
   methods: {
@@ -83,10 +84,7 @@ export default {
 
 <style lang="scss">
 .select-plan {
-    text-align: left;
-    padding-left: 80px;
-    padding-top: 40px;
-
+    width: 100%;
     .header-block {
         padding-bottom: 35px;
         .headline {
@@ -94,6 +92,8 @@ export default {
             font-size: 32px;
             line-height: 37px;
             color: #022959;
+            margin: 0px;
+            padding-bottom: 11px;
         }
         .notification {
             font-family: 'Ubuntu-Regular';
@@ -187,16 +187,16 @@ export default {
             p {
                 width: 12px;
                 height: 12px;
-                margin-bottom: 0px;
+                margin: 0px;
                 border-radius: 50%;
             }
 
             .year {
-                padding-right: 4px;
+                margin-right: 4px;
             }
 
             .month {
-                padding-left: 4px;
+                margin-left: 4px;
             }
 
             .selected {

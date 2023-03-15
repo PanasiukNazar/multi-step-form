@@ -7,33 +7,33 @@
             </div>
     
             <div class="summary-content">
-                <div class="subscription">
-                    <div class="subscription-type">
-                        <p class="type-title">
-                            Arcade (Monthly)
-                        </p>
-                        <div class="subscription-changer">
-                            <button class="chage-button">
-                                {{ labels.change }}
-                            </button>
+                    <div class="subscription">
+                        <div class="subscription-type">
+                            <p class="type-title">
+                                {{ capitalize(summaryData.type) }} ({{ monthlySubscription ? labels.monthly : labels.yearly }})
+                            </p>
+                            <div class="subscription-changer">
+                                <button class="chage-button" @click="recountSubscriptionTime">
+                                    {{ labels.change }}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="subscription-payment">
+                            <p class="payment-title">{{ labels.usd }}{{ summaryData.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
                         </div>
                     </div>
-                    <div class="subscription-payment">
-                        <p class="payment-title">$9/mo</p>
+        
+                    <div class="additional-items" v-for="(item, idx) in summaryData.additionalItems" :key="idx">
+                        <div class="item">
+                            <p class="item-type">{{ item.serviceType }}</p>
+                            <p class="item-payment">+{{labels.usd}}{{ item.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
+                        </div>
                     </div>
-                </div>
-    
-                <div class="additional-items">
-                    <div class="item">
-                        <p class="item-type">Online Service</p>
-                        <p class="item-payment">+$1/mo</p>
+        
+                    <div class="total-fee">
+                        <p class="total-label">{{ labels.total }} (per month)</p>
+                        <p class="total-payment">+{{ labels.usd }}{{ totalPrice }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
                     </div>
-                </div>
-    
-                <div class="total-fee">
-                    <p class="total-label">{{ labels.total }} (per month)</p>
-                    <p class="total-payment">+$12/mo</p>
-                </div>
             </div>
     
             <div class="summary-buttons">
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 export default {
     name: "Greeting",
     data() {
@@ -75,28 +75,42 @@ export default {
                 confirm: "Confirm",
                 total: "Total",
                 change: "Change",
+                monthly: 'Monthly',
+                yearly: 'Yearly',
                 mo: "mo",
-                yr: "yr"
+                yr: "yr",
+                usd: '$'
             },
         };
     },
     computed: {
-        ...mapState("form", ["addOnsData"]),
-        dataArray() {
-            let data = [];
-            return data = this.addOnsData;
+        ...mapState('form', ['summaryData', 'monthlySubscription', 'totalPrice']),
+    },
+
+    methods: {
+        ...mapMutations('form', ['setSummaryData', 'toggleSubscriptionTime', 'calculateTotatPrice']),
+
+        recountSubscriptionTime() {
+            this.toggleSubscriptionTime()
+            this.setSummaryData()
+        },
+
+        capitalize(string) {
+            return string && string[0].toUpperCase() + string.slice(1);
         }
     },
+
+    mounted() {
+        this.setSummaryData()
+        this.calculateTotatPrice()
+    }
 }
 </script>
 
 <style lang="scss">
 .summary-block {
-    padding-left: 80px;
-    .summary {
-        padding-top: 40px;
-        text-align: left;
-    
+    width: 100%;
+    .summary {    
         .summary-header {
             margin-bottom: 35px;
             .headline {
@@ -104,6 +118,8 @@ export default {
                 font-size: 32px;
                 line-height: 37px;
                 color: #022959;
+                margin: 0px;
+                padding-bottom: 11px;
             }
             .notification {
                 font-family: 'Ubuntu-Regular';
@@ -161,7 +177,7 @@ export default {
             }
     
             .additional-items {
-                margin-bottom: 24px;
+                margin-bottom: 16px;
                 .item {
                     display: flex;
                     justify-content: space-between;
@@ -172,6 +188,7 @@ export default {
                         font-size: 14px;
                         line-height: 20px;
                         color: #9699AA;
+                        margin: 0px;
                     }
     
                     .item-payment {
@@ -179,6 +196,7 @@ export default {
                         font-size: 14px;
                         line-height: 20px;
                         color: #022959;
+                        margin: 0px;
                     }
                 }
             }
@@ -187,12 +205,14 @@ export default {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-top: 30px;
     
                 .total-label {
                     font-family: 'Ubuntu-Regular';
                     font-size: 14px;
                     line-height: 20px;
                     color: #9699AA;
+                    margin: 0px;
                 }
     
                 .total-payment {
@@ -200,6 +220,7 @@ export default {
                     font-size: 20px;
                     line-height: 20px;
                     color: #483EFF;
+                    margin: 0px;
                 }
             }
         }

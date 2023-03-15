@@ -1,14 +1,10 @@
 <template>
-    <div id="app">
-        <div class="container form-wrapper">
-            <div class="row">
-                <div class="form-sidebar col-lg-3" v-if="$route.name !== 'greeting'">
-                    <SideBar/>
-                </div>
-                <div class="form-content col-lg-6">
-                    <router-view></router-view>
-                </div>
-            </div>
+    <div class="container">
+        <div class="sidebar" v-if="$route.name !== 'greeting'">
+            <SideBar/>
+        </div>
+        <div class="content">
+            <router-view></router-view>
         </div>
     </div>
 </template>
@@ -31,32 +27,28 @@ export default {
         color: #2c3e50;
     }
 
-    .form-wrapper {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .container {
+        display: flex;
         background: #FFFFFF;
         box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.0951141);
         border-radius: 15px;
-        padding: 30px;
+        gap: 80px;
+        max-width: 940px;
+        max-height: 600px;
+        height: 100%;
+        width: 100%;
+        padding: 16px;
     }
 
-    @font-face {
-        font-family: "Ubuntu-Bold";
-        src: local("Ubuntu-Bold"),
-        url('@/assets/fonts/Ubuntu-Bold.ttf') format("truetype");
-    }
-    @font-face {
-        font-family: "Ubuntu-Medium";
-        src: local("Ubuntu-Medium"),
-        url('@/assets/fonts/Ubuntu-Medium.ttf') format("truetype");
-    }
-    @font-face {
-        font-family: "Ubuntu-Regular";
-        src: local("Ubuntu-Regular"),
-        url('@/assets/fonts/Ubuntu-Regular.ttf') format("truetype");
+    .sidebar {
+        flex: 4;
+         overflow: hidden;
+         border-radius: 10px;
     }
 
+    .content {
+        flex: 8;
+        display: flex;
+        align-items: center;
+    }
 </style>

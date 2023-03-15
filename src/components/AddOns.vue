@@ -18,7 +18,7 @@
                 </div>
                 <div class="right-side-content">
                     <div class="payment">
-                        <p>+${{ item.payment }}/{{ labels.mo }}</p>
+                        <p>+{{ labels.usd }}{{ item.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
                     </div>
                 </div>
             </div>
@@ -60,12 +60,13 @@ export default {
                 go_back: 'Go Back',
                 next_step: 'Next Step',
                 mo: 'mo',
-                yr: 'yr'
+                yr: 'yr',
+                usd: '$'
             },
         }
     },
     computed: {
-        ...mapState('form', ['addOnsData']),
+        ...mapState('form', ['addOnsData', 'monthlySubscription']),
     },
 
     methods: {
@@ -76,9 +77,7 @@ export default {
 
 <style lang="scss">
 .add-ons {
-    text-align: left;
-    padding-left: 80px;
-    padding-top: 40px;
+    width: 100%;
 
     .add-ons-header {
         margin-bottom: 35px;
@@ -87,6 +86,8 @@ export default {
             font-size: 32px;
             line-height: 37px;
             color: #022959;
+            margin: 0px;
+            padding-bottom: 11px;
         }
         .notification {
             font-family: 'Ubuntu-Regular';
@@ -97,8 +98,7 @@ export default {
     }
 
     .add-ons-content {
-        .content-item{
-            margin-bottom: 16px;
+        .content-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -169,12 +169,15 @@ export default {
                 }
             }
         }
+        .content-item:not(:last-child) {
+            margin-bottom: 16px;
+        }
     }
 
     .add-ons-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 93px;
+        margin-top: 71px;
         .previous,
         .next {
             button {
