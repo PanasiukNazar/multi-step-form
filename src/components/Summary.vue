@@ -264,4 +264,36 @@ export default {
         }
     }
 }
+
+@media (max-width: 992px) {
+    .summary-block {
+        padding: 0px 24px;
+        .summary {
+            .summary-header {
+                padding-bottom: 22px;
+                margin-bottom: 0px;
+
+                .headline {
+                    font-family: 'Ubuntu-Medium';
+                    font-size: 24px;
+                    line-height: 28px;
+                    color: #022959;
+                    margin: 0px;
+                    padding-bottom: 11px;
+                }
+                .notification {
+                    font-family: 'Ubuntu-Regular';
+                    font-size: 16px;
+                    line-height: 25px;
+                    color: #9699AA;
+                }
+            }
+    
+            .summary-buttons {
+                margin-top: 60px;
+                padding-bottom: 40px;
+            }
+        }
+    }
+}
 </style>

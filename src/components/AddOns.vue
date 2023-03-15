@@ -134,6 +134,7 @@ export default {
                     .title,
                     .notification {
                         margin-bottom: 0px;
+                        margin-top: 0px;
                     }
 
                     .title {
@@ -158,8 +159,9 @@ export default {
             .right-side-content {
                 .payment {
                     padding-right: 24px;
-
+                    
                     p {
+                        margin-top: 0px;
                         margin-bottom: 0px;
                         font-family: 'Ubuntu-Regular';
                         font-size: 14px;
@@ -214,6 +216,53 @@ export default {
 
     .selected {
         border: 1px solid #483EFF !important;
+    }
+}
+@media (max-width: 992px) {
+    .add-ons {
+        padding: 0px 24px;
+
+        .add-ons-header {
+            padding-bottom: 22px;
+            .headline {
+                font-family: 'Ubuntu-Medium';
+                font-size: 24px;
+                line-height: 28px;
+                color: #022959;
+                margin: 0px;
+                padding-bottom: 11px;
+            }
+            .notification {
+                font-family: 'Ubuntu-Regular';
+                font-size: 16px;
+                line-height: 25px;
+                color: #9699AA;
+            }
+        }
+
+        .add-ons-content {
+            .content-item {
+                .left-side-content {
+                    .checkbox-item {
+                        padding: 21px 16px;
+                        input {
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 4px;
+        
+                            &:checked {
+                                accent-color: #483EFF
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .add-ons-buttons {
+            margin-top: 60px;
+            padding-bottom: 40px;
+        }
     }
 }
 </style>

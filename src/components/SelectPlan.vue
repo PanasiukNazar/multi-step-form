@@ -134,6 +134,7 @@ export default {
                     line-height: 20px;
                     color: #9699AA;
                     margin-bottom: 6px;
+                    margin-top: 0px;
                 }
 
                 .discount {
@@ -158,6 +159,7 @@ export default {
         display: flex;
         justify-content: center;
         margin-top: 45px;
+        padding: 13px 0px;
 
         .month-subscription {
             padding-right: 24px;
@@ -244,6 +246,61 @@ export default {
                     color: #FFFFFF;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .select-plan {
+        padding: 0px 24px;
+
+        .header-block {
+            padding-bottom: 22px;
+            .headline {
+                font-family: 'Ubuntu-Medium';
+                font-size: 24px;
+                line-height: 28px;
+                color: #022959;
+                margin: 0px;
+                padding-bottom: 11px;
+            }
+            .notification {
+                font-family: 'Ubuntu-Regular';
+                font-size: 16px;
+                line-height: 25px;
+                color: #9699AA;
+            }
+        }
+
+        .plan-block {
+            flex-direction: column;
+
+            .plan-type {
+                display: flex;
+                justify-content: flex-start;
+                margin-bottom: 12px;
+
+                .plan-icon {
+                    padding: 20px 16px 20px 14px;
+                }
+
+                .plan-content {
+                    padding-left: 0px;
+                }
+            }
+
+            .plan-type:last-child {
+                margin-bottom: 24px;
+            }
+        }
+
+        .subscription-time {
+            margin-top: 0px
+        }
+
+        .button-block {
+            margin-top: 60px;
+            padding-bottom: 40px;
         }
     }
 }

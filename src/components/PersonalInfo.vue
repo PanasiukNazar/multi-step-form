@@ -181,9 +181,8 @@ export default {
             }
 
             .button-input {
-                position: relative;
-                top: 90px;
-                margin-bottom: 16px;
+                margin-top: 60px;
+                padding-bottom: 40px;
             }
         }
     }
