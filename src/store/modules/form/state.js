@@ -20,7 +20,7 @@ export default {
         },
     ],
 
-    userData: JSON.parse(sessionStorage.getItem('userData')),
+    userData: [],
 
     monthlySubscription: true,
 

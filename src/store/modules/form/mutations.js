@@ -1,13 +1,12 @@
 export default {
     userDataFiling(state, data) {
-        sessionStorage.setItem('userData', JSON.stringify(data))
         state.userData = data
     },
 
     toggleSelectedPlan(state, index) {
         state.planType.forEach((item, idx) => {
             item.isSelected = idx === index;
-        }) 
+        })
     },
 
     toggleSubscriptionTime(state) {
@@ -18,6 +17,14 @@ export default {
                 item.price = item.price * 10
             } else {
                 item.price = item.price / 10
+            }
+        })
+        
+        state.addOnsData.map((item) => {
+            if(!state.monthlySubscription) {
+                item.payment = item.payment * 10
+            } else {
+                item.payment = item.payment / 10
             }
         }) 
     }

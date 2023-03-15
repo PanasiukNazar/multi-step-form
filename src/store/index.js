@@ -1,12 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import form from './modules/form'
+import VuexPersistence from 'vuex-persist';
+import form from './modules/form/index.js'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  modules: {
-    form
-  }
+const vuexLocal = new VuexPersistence({
+    key: 'store',
+    storage: window.sessionStorage,
+  });
+
+const store = new Vuex.Store({
+    modules: {
+        form
+    },
+    plugins: [vuexLocal.plugin],
 })
+
+export default store
