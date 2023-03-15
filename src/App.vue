@@ -30,7 +30,7 @@ export default {
     .container {
         display: flex;
         background: #FFFFFF;
-        box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.0951141);
+        box-shadow: 20px 20px 40px 20px rgba(0, 0, 0, 0.0951141);
         border-radius: 15px;
         gap: 80px;
         max-width: 940px;
