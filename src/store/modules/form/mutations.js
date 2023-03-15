@@ -27,5 +27,13 @@ export default {
                 item.payment = item.payment / 10
             }
         }) 
+    },
+
+    toggleAdditionalItmes(state, index) {
+        state.addOnsData.forEach((item, idx) => {
+            if(idx === index) {
+                item.isSelected = !item.isSelected
+            }
+        })
     }
 }

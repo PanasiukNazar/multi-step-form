@@ -6,10 +6,10 @@
         </div>
 
         <div class="add-ons-content">
-            <div class="content-item" v-for="(item, idx) in dataArray" :key="idx">
+            <div class="content-item" :class="item.isSelected ? 'selected' : ''" v-for="(item, idx) in addOnsData" :key="idx">
                 <div class="left-side-content">
                     <div class="checkbox-item">
-                        <input type="checkbox">
+                        <input type="checkbox" :checked="item.isSelected" @click="toggleAdditionalItmes(idx)">
                     </div>
                     <div class="description">
                         <p class="title">{{ item.title }}</p>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 export default {
     name: 'Addons',
     data () {
@@ -66,11 +66,10 @@ export default {
     },
     computed: {
         ...mapState('form', ['addOnsData']),
+    },
 
-        dataArray() {
-            let data = []
-            return data = this.addOnsData
-        }
+    methods: {
+        ...mapMutations('form', ['toggleAdditionalItmes'])
     }
 }
 </script>
@@ -210,8 +209,8 @@ export default {
         }
     }
 
-    .checked {
-        border: 1px solid #483EFF;
+    .selected {
+        border: 1px solid #483EFF !important;
     }
 }
 </style>
