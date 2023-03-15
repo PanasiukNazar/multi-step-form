@@ -48,5 +48,9 @@ export default {
                 color: #9699AA;
             }
         }
+
+        @media (max-width: 992px) {
+            padding-bottom: 32px;
+        }
     }
 </style>
