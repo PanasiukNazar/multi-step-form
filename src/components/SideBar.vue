@@ -78,6 +78,16 @@ export default {
     background-image: url('@/assets/images/bg-sidebar-desktop.svg');
     background-size: cover;
 
+    @media (max-width: 992px) {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        background-image: url('@/assets/images/bg-sidebar-mobile.svg');
+        padding-top: 32px;
+        padding-left: 0px;
+        height: 172px;
+    }
+
     .step {
         display: flex;
         align-items: center;
@@ -93,6 +103,7 @@ export default {
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            
 
             span {
                 font-family: 'Ubuntu-Bold';
@@ -103,6 +114,15 @@ export default {
                 padding: 5px 9.5px;
                 border-radius: 50%;
                 border: 1px solid #FFFFFF;
+
+                @media (max-width: 992px) {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0px;
+                    width: 33px;
+                    height: 33px;
+                }
             }
         }
 
@@ -127,6 +147,10 @@ export default {
                 text-transform: uppercase;
                 color: #FFFFFF;
                 margin-bottom: 0;
+            }
+
+            @media (max-width: 992px) {
+                display: none;
             }
         }
     }

@@ -102,18 +102,20 @@ export default {
                 font-size: 14px;
                 line-height: 16px;
                 color: #022959;
-                padding-bottom: 8px;
             }
 
             input {
                 background: #FFFFFF;
                 border: 1px solid #D6D9E6;
                 border-radius: 8px;
-                padding: 15px 300px 15px 16px;
+                padding: 15px 0px 15px 16px;
                 font-family: 'Ubuntu-Medium';
                 font-size: 16px;
                 line-height: 18px;
                 color: #022959;
+                margin-top: 8px;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
 
@@ -147,6 +149,41 @@ export default {
                     line-height: 18px;
                     color: #FFFFFF;
                 }
+            }
+        }
+    }
+}
+@media (max-width: 992px) {
+    .personal-info {
+        padding: 0px 24px;
+
+        .header-block {
+            padding-bottom: 22px;
+            .headline {
+                font-family: 'Ubuntu-Medium';
+                font-size: 24px;
+                line-height: 28px;
+                color: #022959;
+                margin: 0px;
+                padding-bottom: 11px;
+            }
+            .notification {
+                font-family: 'Ubuntu-Regular';
+                font-size: 16px;
+                line-height: 25px;
+                color: #9699AA;
+            }
+        }
+
+        .content-block {
+            .phone-input {
+                padding-bottom: 0px;
+            }
+
+            .button-input {
+                position: relative;
+                top: 90px;
+                margin-bottom: 16px;
             }
         }
     }
