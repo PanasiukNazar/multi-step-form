@@ -22,8 +22,8 @@
         <div class="subscription-time">
             <span class="month-subscription" :class="monthlySubscription ? 'active' : ''">{{ labels.monthly }}</span>
             <div class="month-year-switcher">
-                <p class="month" :class="monthlySubscription ? 'selected' : ''" @click="toggleSubscriptionTime()"></p>
-                <p class="year" :class="!monthlySubscription ? 'selected' : ''" @click="toggleSubscriptionTime()"></p>
+                <p class="month" :class="monthlySubscription ? 'selected' : ''" @click="toggleSubscriptionTime"></p>
+                <p class="year" :class="!monthlySubscription ? 'selected' : ''" @click="toggleSubscriptionTime"></p>
             </div>
             <span class="year-subscription" :class="!monthlySubscription ? 'active' : ''">{{ labels.yearly }}</span>
         </div>
@@ -53,31 +53,44 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+
 export default {
   name: 'SelectPlan',
-  data () {
-        return {
-            labels: {
-                select_your_plan: 'Select your plan',
-                monthly_or_yearly_billing: 'You have the option of monthly or yearly billing.',
-                monthly: 'Monthly',
-                yearly: 'Yearly',
-                go_back: 'Go Back',
-                next_step: 'Next Step',
-                mo: 'mo',
-                yr: 'yr',
-                two_month_free: '2 month free',
-                usd: '$'
-            }
-        }
-    },
-  computed: {
-    ...mapState('form', ['monthlySubscription', 'planType', 'monthlySubscription']),
-  },
 
-  methods: {
-    ...mapMutations('form', ['toggleSelectedPlan', 'toggleSubscriptionTime'])
+  setup() {
+
+    const store = useStore()
+
+    const labels = {
+        select_your_plan: 'Select your plan',
+        monthly_or_yearly_billing: 'You have the option of monthly or yearly billing.',
+        monthly: 'Monthly',
+        yearly: 'Yearly',
+        go_back: 'Go Back',
+        next_step: 'Next Step',
+        mo: 'mo',
+        yr: 'yr',
+        two_month_free: '2 month free',
+        usd: '$'
+    }
+
+    function toggleSubscriptionTime() {
+        store.commit('toggleSubscriptionTime')
+    }
+
+    function toggleSelectedPlan(idx) {
+        store.commit('toggleSelectedPlan', idx)
+    }
+
+    return {
+        labels,
+        planType: computed(() => store.state.planType),
+        monthlySubscription: computed(() => store.state.monthlySubscription),
+        toggleSubscriptionTime,
+        toggleSelectedPlan
+    }
   }
 }
 </script>
