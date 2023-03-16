@@ -63,46 +63,69 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { useStore } from 'vuex'
+import { computed, onMounted  } from 'vue'
+
 export default {
     name: "Greeting",
-    data() {
-        return {
-            labels: {
-                finishing_up: "Finishing up",
-                double_check_before_confirming: "Double-check everything looks OK before confirming.",
-                go_back: "Go Back",
-                confirm: "Confirm",
-                total: "Total",
-                change: "Change",
-                monthly: 'Monthly',
-                yearly: 'Yearly',
-                mo: "mo",
-                yr: "yr",
-                usd: '$'
-            },
-        };
-    },
-    computed: {
-        ...mapState('form', ['summaryData', 'monthlySubscription', 'totalPrice']),
-    },
 
-    methods: {
-        ...mapMutations('form', ['setSummaryData', 'toggleSubscriptionTime', 'calculateTotatPrice']),
+    setup() {
+        const store = useStore()
+        const labels = {
+            finishing_up: "Finishing up",
+            double_check_before_confirming: "Double-check everything looks OK before confirming.",
+            go_back: "Go Back",
+            confirm: "Confirm",
+            total: "Total",
+            change: "Change",
+            monthly: 'Monthly',
+            yearly: 'Yearly',
+            mo: "mo",
+            yr: "yr",
+            usd: '$'
+        }
 
-        recountSubscriptionTime() {
-            this.toggleSubscriptionTime()
-            this.setSummaryData()
-        },
+        function setSummaryData() {
+            store.commit('setSummaryData')
+        }
 
-        capitalize(string) {
+        function toggleSubscriptionTime() {
+            store.commit('toggleSubscriptionTime')
+        }
+
+        function calculateTotatPrice() {
+            store.commit('calculateTotatPrice')
+        }
+
+        function recountSubscriptionTime() {
+            toggleSubscriptionTime()
+            setSummaryData()
+        }
+
+        function capitalize(string) {
             return string && string[0].toUpperCase() + string.slice(1);
         }
-    },
 
-    mounted() {
-        this.setSummaryData()
-        this.calculateTotatPrice()
+        const totalPrice = computed(() => store.state.totalPrice)
+        const summaryData = computed(() => store.state.summaryData)
+        const monthlySubscription = computed(() => store.state.monthlySubscription)
+
+        onMounted(() => {
+            setSummaryData()
+            calculateTotatPrice()
+        })
+
+        return {
+            labels,
+            setSummaryData,
+            toggleSubscriptionTime,
+            calculateTotatPrice,
+            recountSubscriptionTime,
+            capitalize,
+            totalPrice,
+            summaryData,
+            monthlySubscription
+        }
     }
 }
 </script>
