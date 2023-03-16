@@ -49,28 +49,33 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 export default {
     name: 'Addons',
-    data () {
-        return {
-            labels: {
-                pick_add_ons: 'Pick add-ons',
-                add_ons_help: 'Add-ons help enhance your gaming experience.',
-                go_back: 'Go Back',
-                next_step: 'Next Step',
-                mo: 'mo',
-                yr: 'yr',
-                usd: '$'
-            },
-        }
-    },
-    computed: {
-        ...mapState('form', ['addOnsData', 'monthlySubscription']),
-    },
+    setup() {
+        const store = useStore()
 
-    methods: {
-        ...mapMutations('form', ['toggleAdditionalItmes'])
+        const labels = {
+            pick_add_ons: 'Pick add-ons',
+            add_ons_help: 'Add-ons help enhance your gaming experience.',
+            go_back: 'Go Back',
+            next_step: 'Next Step',
+            mo: 'mo',
+            yr: 'yr',
+            usd: '$'
+        }
+
+        function toggleAdditionalItmes(idx) {
+            store.commit('toggleAdditionalItmes', idx)
+        }
+
+        return {
+            labels,
+            addOnsData: computed(() => store.state.addOnsData),
+            monthlySubscription: computed(() => store.state.monthlySubscription),
+            toggleAdditionalItmes
+        }
     }
 }
 </script>
