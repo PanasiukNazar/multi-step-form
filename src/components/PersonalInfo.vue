@@ -6,7 +6,7 @@
         </div>
         <div class="content-block">
             <div class="name-input">
-                <FormulateInput
+                <FormKit 
                     type="text"
                     :label="labels.name"
                     placeholder="e.g. Stephen King"
@@ -14,7 +14,7 @@
                 />
             </div>
             <div class="email-input">
-                <FormulateInput
+                <FormKit 
                     type="email"
                     :label="labels.email"
                     name="email"
@@ -24,7 +24,7 @@
                 />
             </div>
             <div class="phone-input">
-                <FormulateInput
+                <FormKit 
                     name="phone"
                     :label="labels.phone"
                     validation="required|number"
