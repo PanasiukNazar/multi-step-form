@@ -12,12 +12,14 @@
 
 <script>
 export default {
-    data() {
+    setup() {
+        const labels = {
+            thank_you: "Thank you!",
+            text: "Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com."
+        }
+
         return {
-            labels: {
-                    thank_you: "Thank you!",
-                    text: "Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com."
-            }
+            labels
         }
     }
 }
