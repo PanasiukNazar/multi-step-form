@@ -44,31 +44,39 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
-  name: 'PersonalInfo',
-  data() {
+    name: 'PersonalInfo',
+    
+    setup() {
+        
+        const store = useStore()
+
+        const labels = {
+            personal_info: 'Personal info',
+            provide_your_name: 'Please provide your name, email address, and phone number.',
+            name: 'name',
+            email: 'Email Address',
+            phone: 'Phone Number',
+            next_step: 'Next Step'
+        }
+
+        const userValues = computed(() => {
+            return store.state.userData
+        }) 
+
+        function setUserData() {
+            store.commit('userDataFiling', userValues)
+        }
+
         return {
-            labels: {
-                personal_info: 'Personal info',
-                provide_your_name: 'Please provide your name, email address, and phone number.',
-                name: 'name',
-                email: 'Email Address',
-                phone: 'Phone Number',
-                next_step: 'Next Step'
-            },
-            userValues: { ...this.$store.state.form.userData }
+            labels,
+            userValues,
+            setUserData
         }
     },
-
-    methods: {
-        ...mapMutations('form', ['userDataFiling']),
-
-        setUserData() {
-            this.userDataFiling(this.userValues)
-        }
-    }
 }
 </script>
 

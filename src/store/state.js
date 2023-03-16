@@ -43,7 +43,7 @@ export default {
         },
     ],
 
-    userData: [],
+    userData: {},
 
     monthlySubscription: true,
 
