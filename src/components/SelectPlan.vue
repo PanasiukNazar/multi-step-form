@@ -13,7 +13,7 @@
 
                 <div class="plan-content">
                     <p class="title">{{ item.title }}</p>
-                    <p class="price">{{ labels.usd }}{{ item.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
+                    <p class="price">{{ labels.usd }}{{ item.price }}/{{ planTime }}</p>
                     <span class="discount" v-if="!monthlySubscription">{{ labels.two_month_free }}</span>
                 </div>
             </div>
@@ -84,12 +84,21 @@ export default {
         store.commit('toggleSelectedPlan', idx)
     }
 
+    const monthlySubscription = computed(() => store.state.monthlySubscription)
+
+    const planType = computed(() => store.state.planType)
+    
+    const planTime = computed(() => {
+        return monthlySubscription.value ? labels.mo : labels.yr 
+    })
+
     return {
         labels,
-        planType: computed(() => store.state.planType),
-        monthlySubscription: computed(() => store.state.monthlySubscription),
+        planType,
+        monthlySubscription,
         toggleSubscriptionTime,
-        toggleSelectedPlan
+        toggleSelectedPlan,
+        planTime,
     }
   }
 }

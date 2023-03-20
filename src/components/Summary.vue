@@ -19,20 +19,20 @@
                             </div>
                         </div>
                         <div class="subscription-payment">
-                            <p class="payment-title">{{ labels.usd }}{{ summaryData.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
+                            <p class="payment-title">{{ labels.usd }}{{ summaryData.price }}/{{ planTime }}</p>
                         </div>
                     </div>
         
                     <div class="additional-items" v-for="(item, idx) in summaryData.additionalItems" :key="idx">
                         <div class="item">
                             <p class="item-type">{{ item.serviceType }}</p>
-                            <p class="item-payment">+{{labels.usd}}{{ item.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
+                            <p class="item-payment">+{{labels.usd}}{{ item.price }}/{{ planTime }}</p>
                         </div>
                     </div>
         
                     <div class="total-fee">
-                        <p class="total-label">{{ labels.total }} (per month)</p>
-                        <p class="total-payment">+{{ labels.usd }}{{ totalPrice }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
+                        <p class="total-label">{{ labels.total }} ({{ monthlySubscription ? labels.per_month : labels.per_year }})</p>
+                        <p class="total-payment">+{{ labels.usd }}{{ totalPrice }}/{{ planTime }}</p>
                     </div>
             </div>
     
@@ -80,6 +80,8 @@ export default {
             change: "Change",
             monthly: 'Monthly',
             yearly: 'Yearly',
+            per_month: 'per month',
+            per_year: 'per year',
             mo: "mo",
             yr: "yr",
             usd: '$'
@@ -109,6 +111,9 @@ export default {
         const totalPrice = computed(() => store.state.totalPrice)
         const summaryData = computed(() => store.state.summaryData)
         const monthlySubscription = computed(() => store.state.monthlySubscription)
+        const planTime = computed(() => {
+            return monthlySubscription.value ? labels.mo : labels.yr 
+        })
 
         onMounted(() => {
             setSummaryData()
@@ -124,7 +129,8 @@ export default {
             capitalize,
             totalPrice,
             summaryData,
-            monthlySubscription
+            monthlySubscription,
+            planTime,
         }
     }
 }

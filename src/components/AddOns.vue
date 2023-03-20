@@ -18,7 +18,7 @@
                 </div>
                 <div class="right-side-content">
                     <div class="payment">
-                        <p>+{{ labels.usd }}{{ item.price }}/{{ monthlySubscription ? labels.mo : labels.yr }}</p>
+                        <p>+{{ labels.usd }}{{ item.price }}/{{ planTime }}</p>
                     </div>
                 </div>
             </div>
@@ -70,11 +70,18 @@ export default {
             store.commit('toggleAdditionalItmes', idx)
         }
 
+        const monthlySubscription = computed(() => store.state.monthlySubscription)
+
+        const planTime = computed(() => {
+            return monthlySubscription.value ? labels.mo : labels.yr 
+        })
+
         return {
             labels,
             addOnsData: computed(() => store.state.addOnsData),
             monthlySubscription: computed(() => store.state.monthlySubscription),
-            toggleAdditionalItmes
+            toggleAdditionalItmes,
+            planTime
         }
     }
 }
