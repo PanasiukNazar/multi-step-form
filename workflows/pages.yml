@@ -19,7 +19,7 @@ jobs:
 
          - run: npm ci
 
-         - run: npm run build-production
+         - run: npm run build
 
          - uses: actions/upload-pages-artifact@v1
            with:
